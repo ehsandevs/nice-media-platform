@@ -29,13 +29,13 @@ Route::get('/video/secret/{key}', function ($key) {
 
 Route::get('/video/{playlist}', function ($playlist) {
     return FFMpeg::dynamicHLSPlaylist()
-        ->fromDisk('streamable_videos')
-        ->open($playlist)
+        ->fromDisk('public')
+        ->open('streamable_videos/' . $playlist)
         ->setKeyUrlResolver(function ($key) {
             return route('video.key', ['key' => $key]);
         })
         ->setMediaUrlResolver(function ($mediaFilename) {
-            return Storage::disk('public')->url($mediaFilename);
+            return Storage::disk('public')->url('streamable_videos/' . $mediaFilename);
         })
         ->setPlaylistUrlResolver(function ($playlistFilename) {
             return route('video.playlist', ['playlist' => $playlistFilename]);
