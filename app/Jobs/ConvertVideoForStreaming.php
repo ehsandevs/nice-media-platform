@@ -38,9 +38,9 @@ class ConvertVideoForStreaming implements ShouldQueue
             // call the 'exportForHLS' method and specify the disk to which we want to export...
             ->exportForHLS()
             ->withRotatingEncryptionKey(function ($filename, $content) {
-                Storage::disk('public')->put($filename, $content);
+                Storage::disk('secrets')->put($filename, $content);
             })
-            ->toDisk('streamable_videos')
+            ->toDisk('public')
 
             // we'll add different formats so the stream will play smoothly
             // with all kinds of internet connections...
@@ -49,7 +49,7 @@ class ConvertVideoForStreaming implements ShouldQueue
             ->addFormat($highBitrateFormat)
 
             // call the 'save' method with a filename...
-            ->save($this->video->id . '.m3u8');
+            ->save('streamable_videos/' .$this->video->id . '.m3u8');
 
         // update the database so we know the convertion is done!
         $this->video->update([
