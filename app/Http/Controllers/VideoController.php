@@ -12,9 +12,9 @@ class VideoController extends Controller
     public function store(StoreVideoRequest $request)
     {
         $video = Video::create([
-            'disk'          => 'videos_disk',
+            'disk'          => 'original_videos',
             'original_name' => $request->video->getClientOriginalName(),
-            'path'          => $request->video->store('videos', 'videos_disk'),
+            'path'          => $request->video->store('','original_videos'),
             'title'         => $request->title,
         ]);
 
