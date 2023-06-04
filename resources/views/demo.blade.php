@@ -26,9 +26,9 @@
     var video = document.getElementById('videoPlayer');
     if (Hls.isSupported()) {
       var hls = new Hls();
-      hls.loadSource('http://localhost:8000/storage/6.m3u8');
+      hls.loadSource('http://localhost:8000/api/video/17.m3u8');
       hls.attachMedia(video);
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = 'http://localhost:8000/storage/6.m3u8';
+      video.src = 'http://localhost:8000/api/video/17.m3u8';
     }
   </script>
