@@ -2,6 +2,9 @@
 /public/hot
 /public/storage
 /storage/*.key
+/storage/secrets/*
+/storage/downloadable_videos/*
+/storage/original_videos/*
 /vendor
 .env
 .env.backup
