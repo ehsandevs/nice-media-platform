@@ -42,25 +42,27 @@ return [
             'visibility' => 'public',
         ],
 
-        'videos_disk' => [
+        'original_videos' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
+            'root' => storage_path('original_videos'),
         ],
 
         'downloadable_videos' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            'root' => storage_path('downloadable_videos'),
             'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
         ],
 
         'streamable_videos' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            'root' => storage_path('streamable_videos'),
             'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
+
+        ],
+        'secrets' => [
+            'driver' => 'local',
+            'root' => storage_path('secrets'),
+            'url' => env('APP_URL').'/storage',
         ],
 
         's3' => [
