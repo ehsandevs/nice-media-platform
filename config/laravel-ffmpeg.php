@@ -1,4 +1,4 @@
-cls<?php
+<?php
 
 return [
     'ffmpeg' => [
