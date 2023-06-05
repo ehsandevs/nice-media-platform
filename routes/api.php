@@ -27,6 +27,10 @@ Route::get('/video/secret/{key}', function ($key) {
     return Storage::disk('secrets')->download($key);
 })->name('video.key');
 
+Route::get('/video/segment/{segment}', function ($segment) {
+    return Storage::disk('public')->download("streamable_videos/$segment");
+})->name('video.segment');
+
 Route::get('/video/{playlist}', function ($playlist) {
     return FFMpeg::dynamicHLSPlaylist()
         ->fromDisk('public')
@@ -35,7 +39,7 @@ Route::get('/video/{playlist}', function ($playlist) {
             return route('video.key', ['key' => $key]);
         })
         ->setMediaUrlResolver(function ($mediaFilename) {
-            return Storage::disk('public')->url('streamable_videos/' . $mediaFilename);
+            return route('video.segment', ['segment' => $mediaFilename]);
         })
         ->setPlaylistUrlResolver(function ($playlistFilename) {
             return route('video.playlist', ['playlist' => $playlistFilename]);
